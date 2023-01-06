@@ -1,6 +1,6 @@
 if game.PlaceId == 9349164965 then
     local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-    local Window = OrionLib:MakeWindow({Name = "[No Safety] !!FUCKER!!", HidePremium = false, SaveConfig = true, IntroText = "[No Safety] !!FUCKER!!"})
+    local Window = OrionLib:MakeWindow({Name = "[No Safety] !!FUCKER!!", HidePremium = false, SaveConfig = true, ConfigFolder = ""})
     
     --Values
     _G.InfiniteStamina = true
