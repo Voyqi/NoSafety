@@ -28,279 +28,84 @@ if game.PlaceId == 9349164965 then
         game:GetService("ReplicatedStorage").RemoteEvents.SchoolExam:FireServer(unpack(args))        
     end
 
+    function GraduateSchool()
+
+        OrionLib:MakeNotification({
+            Name = "Successfully",
+            Content = "Graduated from school!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+
 
     function NoCooldown()
         game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
             prompt.HoldDuration = 0
         end)
+
+        OrionLib:MakeNotification({
+            Name = "Successfully",
+            Content = "Bypassed [Prompt Cooldown]!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
     end
 
 
     function MODDetection()
-        local players = game:GetService("Players")
----------------SETTINGS
-local toCheck = {43902325,555435894,3475330729,1974276964,676600432,97001308,3717467283,212300948,29290988,998189857,132272122}--Add the UserId's of the people you want to check for
-local canLeave = false --If you want to auto leave the game then change this to true
-local canKick = true--If you have a anti client kick executed set this to false
-local notificationsEnabled = true -- set to false if the game can detect notifications
-local kickmessage = "MODERATOR DETECTED IN GAME!" --The message you want when you're kicked. canKick must be true
------------------
-function check(player)
-    for i,v in pairs(toCheck) do 
-        if tostring(v) == tostring(player.UserId)then
-            return true
-        end
-    end
-    return false
-end
-function notify(title,text,duritation)
-    game:GetService("StarterGui"):SetCore("SendNotification",{
-        Title = title;
-        Text = text;
-        Duritation = duritation;
-    })
-end
-function crash(o)
-    if o then
-        if kickMessage=="" then 
-        players.LocalPlayer:Kick("A player in your toCheck table is currently in this game")
-        else
-            players.LocalPlayer:kick(kickMessage)
-        end
-    else
-        pcall(function() players.LocalPlayer.Character:BreakJoints() end)--kills you
-        wait(1)
-		pcall(function()
-            local part = Instance.new("Part")
-            local d = part.TouchEnded:Connect(print)
-            part.DescendantRemoving:Connect(function()
-            d:Disconnect()
-            end)
-            part:Destroy()
-        end)--this should close your game instantly
-        while true do print('k') end--if all else fails this will freeze your game
-    end
-end
-
-for i,v in pairs(players:GetPlayers())do--I told you.
-    if check(v) and canLeave then
-        crash(canKick)
-    elseif check(v) then
-        if notificationsEnabled then
-            notify("WARNING",v.Name.." is in game and is on your detection list",5)
-        end
-    end
-end
-
-players.PlayerAdded:Connect(function(player)--I told you x2.
-    if check(player) and canLeave then
-        crash(canKick)
-    elseif check(player) then
-        if notificationsEnabled then
-            notify("WARNING",player.Name.." has joined as is on your detection list",5)
-        end
-    end
-end)
-
-
-if notificationsEnabled==false and canLeave == false and canKick == false then
-    print("The fuck are you executing this script for?")
-end
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/Voyqi/NoSafetyNotifier/main/MOD')))()
 end
 
 
 function DirtESP()
-    -- loadstring
-local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Voyqi/NoSafetyDirt/main/ESP')))()
 
--- config
-ESP.Players = false
-ESP.Boxes = false
-ESP.Names = true
-ESP:Toggle(true)
-
--- object
-ESP:AddObjectListener(Workspace.DirtFramework, { -- Object Path, For example: Workspace.ThisFolder
-Name = "Dirt", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-CustomName = "Dirt", -- Name you want to be displayed
-Color = Color3.fromRGB(114, 101, 163), -- Color
-IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
+        OrionLib:MakeNotification({
+            Name = "Successfully",
+            Content = "Enabled [Dirt] ESP!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
 end
+
 
 function NittyESP()
-    -- loadstring
-local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+    OrionLib:MakeNotification({
+        Name = "Successfully",
+        Content = "Enabled [Nitty] ESP!",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+    
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Voyqi/NoSafetyESP/main/Nitty')))()
+end
 
--- config
-ESP.Players = false
-ESP.Boxes = false
-ESP.Names = true
-ESP:Toggle(true)
 
--- object
-ESP:AddObjectListener(Workspace.TrapperFramework["Temple Estate"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
+function ChatSpy()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Voyqi/NoSafetyChatSpy/main/NSFTY')))()
 
-ESP:AddObjectListener(Workspace.TrapperFramework["Graveside Estate"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
+                    OrionLib:MakeNotification({
+                        Name = "Successfully",
+                        Content = "Enabled [ChatSpy]!",
+                        Image = "rbxassetid://4483345998",
+                        Time = 5
+                    })
+end
 
-ESP:AddObjectListener(Workspace.TrapperFramework["Brickside Park"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
 
-ESP:AddObjectListener(Workspace.TrapperFramework["Brickham Estate"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
+function Fullbright()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Voyqi/NoSafetyFullbright/main/FB')))()
 
-ESP:AddObjectListener(Workspace.TrapperFramework["Hillside Road"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Juggin Alleys"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Rosebury Square"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Juggin Road"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Grow House"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Shelldale Drive"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Crasher Lane"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Longwood Underpass"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["the Grow House"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["the Cemetary"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Longwood Road"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Brickston Station"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Crescent Way"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Farmbrick Parking Lot"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Longwood Backstreets"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
-
-ESP:AddObjectListener(Workspace.TrapperFramework["Poters Drive"], {
-    Name = "Nitty", --Object name inside of the path, for example: Workspace.ThisFolder.Item_1
-    CustomName = "Nitty", -- Name you want to be displayed
-    Color = Color3.fromRGB(92, 118, 150), -- Color
-    IsEnabled = "whatever" -- Any name, has to be the same as the last line: ESP.TheNameYouWant
-})
-ESP.whatever = true
+        OrionLib:MakeNotification({
+            Name = "Successfully",
+            Content = "Enabled [Fullbright]!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
 end
     
+
     -- PlayerTab
     local PlayerTab = Window:MakeTab({
         Name = "PLAYER",
@@ -313,13 +118,6 @@ end
                 Name = "MOD Notifier",
                 Callback = function()
                           MODDetection()
-                  end    
-            })
-    
-            PlayerTab:AddButton({
-                Name = "Graduate",
-                Callback = function()
-                          GraduateSchool()
                   end    
             })
         
@@ -377,18 +175,59 @@ end
         PremiumOnly = false
     })
 
-                --ESPButtons
-                ESPTab:AddButton({
-                    Name = "Nitty",
-                    Callback = function()
-                              NittyESP()
-                      end    
-                })
+            --ESPButtons
+            ESPTab:AddButton({
+                Name = "Nitty",
+                Callback = function()
+                          NittyESP()
+                  end    
+            })
+
 
                 ESPTab:AddButton({
                     Name = "Dirt",
                     Callback = function()
                               DirtESP()
+                      end    
+                })
+
+
+    -- WRLDTab
+    local WRLDTab = Window:MakeTab({
+        Name = "WRLD",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+                --WRLDButtons
+                WRLDTab:AddButton({
+                    Name = "ChatSpy",
+                    Callback = function()
+                              ChatSpy()
+                      end    
+                })
+
+
+                --WRLDButtons
+                WRLDTab:AddButton({
+                    Name = "Fullbright",
+                    Callback = function()
+                              Fullbright()
+                      end    
+                })
+
+    -- UselessTab
+    local USELESSTab = Window:MakeTab({
+        Name = "USELESS",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+                --UselessButtons
+                USELESSTab:AddButton({
+                    Name = "Graduate",
+                    Callback = function()
+                        GraduateSchool()
                       end    
                 })
 
