@@ -53,9 +53,27 @@ if game.PlaceId == 9349164965 then
     end
 
 
+    function CallPlug()
+            local args = {
+                [1] = "Plug"
+            }
+            
+            game:GetService("ReplicatedStorage").Mobile.MobileSendEvent:FireServer(unpack(args))
+
+            OrionLib:MakeNotification({
+                Name = "Successfully",
+                Content = "Calling the Plug [Dealer]",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+    end
+
     function MODDetection()
         loadstring(game:HttpGet(('https://raw.githubusercontent.com/Voyqi/NoSafetyNotifier/main/MOD')))()
 end
+
+
+
 
 
 function DirtESP()
@@ -104,6 +122,19 @@ function Fullbright()
             Time = 5
         })
 end
+
+
+function FixCall()
+    game:GetService("ReplicatedStorage").Mobile.MobileReceiveEvent:FireServer()
+
+    OrionLib:MakeNotification({
+        Name = "Successfully",
+        Content = "Disconnected [Phone Call]!",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
     
 
     -- PlayerTab
@@ -118,6 +149,13 @@ end
                 Name = "MOD Notifier",
                 Callback = function()
                           MODDetection()
+                  end    
+            })
+
+            PlayerTab:AddButton({
+                Name = "Call Plug",
+                Callback = function()
+                          CallPlug()
                   end    
             })
         
@@ -150,7 +188,8 @@ end
     TeleportTab:AddDropdown({
 	Name = "Teleports [Risky]",
 	Default = "",
-	Options = {"Brickeolia [Dirt Job]", "... [Cooker Job]"},
+	Options = {
+        "Brickeolia [Dirt Job]", "Borley's North [Cooker Job]", "Borley's South [Cooker Job]", "Bando [NSB]", "Docks [Seed Pickup]", "Shop [1]", "Shop [2]", "JD [Clothing Store]", "Barrods [Clothing Store]", "Barbershop", "Dealership", "Library", "Warehouse", "Growhouse", "ATM [1]"},
 	Callback = function(Value)
         getgenv().TPPlace = Value
 	end    
@@ -163,9 +202,53 @@ end
                 Callback = function()
                     if getgenv().TPPlace == "Brickeolia [Dirt Job]" then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(903.3091430664062, 3.8750486373901367, 807.9028930664062)
+
+                    elseif getgenv().TPPlace == "Borley's South [Cooker Job]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(253.3358612060547, 4.310620307922363, 111.84494018554688)
+
+                    elseif getgenv().TPPlace == "Borley's North [Cooker Job]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(220.7034454345703, 4.602014541625977, 2395.118896484375)
+
+                    elseif getgenv().TPPlace == "Bando [NSB]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-472.3749084472656, 204.76792907714844, 629.0374755859375)
+
+                    elseif getgenv().TPPlace == "Docks [Seed Pickup]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(599.5565185546875, -12.401510238647461, 2961.0634765625)
+
+                    elseif getgenv().TPPlace == "Shop [1]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-311.552001953125, 32.93582534790039, 527.0051879882812)
+
+                    elseif getgenv().TPPlace == "Shop [2]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-312.19866943359375, 32.935829162597656, 526.7435302734375)
+
+                    elseif getgenv().TPPlace == "JD [Clothing Store]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(441.33929443359375, 4.730432510375977, 524.6444702148438)
+
+                    elseif getgenv().TPPlace == "Barrods [Clothing Store]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(232.08006286621094, 4.723210334777832, 821.5528564453125)
+
+                    elseif getgenv().TPPlace == "Barbershop" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(563.6148071289062, 4.693553924560547, 405.9053955078125)
+
+                    elseif getgenv().TPPlace == "Dealership" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1004.0429077148438, 10.737366676330566, 1164.218505859375)
+
+                    elseif getgenv().TPPlace == "Library" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(780.6233520507812, 5.616462230682373, 1972.323974609375)
+
+                    elseif getgenv().TPPlace == "Warehouse" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-251.16871643066406, 33.300235748291016, 669.510986328125)
+
+                    elseif getgenv().TPPlace == "Growhouse" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(713.732666015625, 19.179656982421875, 759.7273559570312)
+
+                    elseif getgenv().TPPlace == "ATM [1]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(389.3681640625, 4.6154375076293945, 691.2332763671875)
+
                     end
-                  end    
-            })
+                  end
+                })
+
 
 
     -- ESPTab
@@ -224,6 +307,13 @@ end
     })
 
                 --UselessButtons
+                USELESSTab:AddButton({
+                    Name = "Disconnect Phone Call",
+                    Callback = function()
+                        FixCall()
+                      end    
+                })
+
                 USELESSTab:AddButton({
                     Name = "Graduate",
                     Callback = function()
