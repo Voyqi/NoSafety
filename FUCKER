@@ -4,16 +4,34 @@ if game.PlaceId == 9349164965 then
     
     --Values
     _G.InfiniteStamina = true
+
+    _G.InfiniteEngergy = true
+
+    _G.AutoBuyDiminium = true
+
+    _G.AutoBuyGummy = true
     
     
     --Functions
     function InfiniteStamina()
-        while _G.InfiniteStamina == true do
+        while _G.InfiniteStamina == true do   
     
     Wait (0.1)
     
     local lname = game.Players.LocalPlayer.Name
     game:GetService("ReplicatedStorage").PlayerData[lname].PlayerAdditions.Stamina.Value = 50
+    
+        end
+    end
+
+
+    function InfiniteEngergy()
+        while _G.InfiniteEngergy == true do   
+    
+    Wait (0.1)
+    
+    local lname = game.Players.LocalPlayer.Name
+    game:GetService("ReplicatedStorage").PlayerData[lname].PlayerBuild.Energy.Value = 50
     
         end
     end
@@ -27,6 +45,39 @@ if game.PlaceId == 9349164965 then
         
         game:GetService("ReplicatedStorage").RemoteEvents.SchoolExam:FireServer(unpack(args))        
     end
+
+
+    function AutoBuyDiminium()
+        while _G.AutoBuyDiminium == true do
+    
+    Wait (0.1)
+    
+        local args = {
+            [1] = "LIQUID DIMINIUM VIAL",
+            [2] = 10,
+            [3] = 100
+        }
+        
+        game:GetService("ReplicatedStorage").RemoteEvents.DeadStockPurchase:FireServer(unpack(args))
+    end
+end
+
+
+    function AutoBuyGummy()
+        while _G.AutoBuyGummy == true do
+
+    Wait (0.1)
+
+        local args = {
+            [1] = "GUMMY MIX NIZZY IMPRT",
+            [2] = 10,
+            [3] = 50
+        }
+
+        game:GetService("ReplicatedStorage").RemoteEvents.DeadStockPurchase:FireServer(unpack(args))
+    end
+end
+
 
     function GraduateSchool()
 
@@ -144,7 +195,18 @@ function Diminium()
     
     game:GetService("ReplicatedStorage").RemoteEvents.DeadStockPurchase:FireServer(unpack(args))
 end
-    
+
+
+function Gummy()
+    local args = {
+        [1] = "GUMMY MIX NIZZY IMPRT",
+        [2] = 10,
+        [3] = 50
+    }
+
+    game:GetService("ReplicatedStorage").RemoteEvents.DeadStockPurchase:FireServer(unpack(args))
+end
+
 
     -- PlayerTab
     local PlayerTab = Window:MakeTab({
@@ -186,6 +248,15 @@ end
         end
     })
 
+    PlayerTab:AddToggle({
+        Name = "Infinite Energy",
+        Default = false,
+        Callback = function(Value)
+        _G.InfiniteEngergy = Value
+        InfiniteEngergy()
+        end
+    })
+
     -- TeleportsTab
     local TeleportTab = Window:MakeTab({
         Name = "TELEPORTS",
@@ -198,7 +269,7 @@ end
 	Name = "Teleports [Risky]",
 	Default = "",
 	Options = {
-        "Lab [Meth Cooking]", "Brickeolia [Dirt Job]", "Borley's North [Cooker Job]", "Borley's South [Cooker Job]", "Bando [NSB]", "Docks [Seed Pickup]", "Shop [1]", "Shop [2]", "JD [Clothing Store]", "Barrods [Clothing Store]", "Barbershop", "Dealership", "Library", "Warehouse", "Growhouse", "ATM [1]"},
+        "Lab [Meth Cooking]", "Brickeolia [Dirt Job]", "Borley's North [Cooker Job]", "Borley's South [Cooker Job]", "Bando [SNB]", "Docks [Seed Pickup]", "Shop [1]", "Shop [2]", "JD [Clothing Store]", "Barrods [Clothing Store]", "Barbershop", "Dealership", "Library", "Warehouse", "Growhouse", "ATM [1]", "SewerSafe", "Sewer", "Bando [ABM]","Bando [NSB]"},
 	Callback = function(Value)
         getgenv().TPPlace = Value
 	end    
@@ -222,7 +293,7 @@ end
                     elseif getgenv().TPPlace == "Borley's North [Cooker Job]" then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(220.7034454345703, 4.602014541625977, 2395.118896484375)
 
-                    elseif getgenv().TPPlace == "Bando [NSB]" then
+                    elseif getgenv().TPPlace == "Bando [SNB]" then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-472.3749084472656, 204.76792907714844, 629.0374755859375)
 
                     elseif getgenv().TPPlace == "Docks [Seed Pickup]" then
@@ -258,10 +329,21 @@ end
                     elseif getgenv().TPPlace == "ATM [1]" then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(389.3681640625, 4.6154375076293945, 691.2332763671875)
 
+                    elseif getgenv().TPPlace == "SewerSafe" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(491.3224792480469, -20.198923110961914, 2642.851806640625)
+
+                    elseif getgenv().TPPlace == "Sewer" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(272.6711120605469, -20.19877815246582, 2277.80517578125)
+
+                    elseif getgenv().TPPlace == "Bando [ABM]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-300.5081481933594, 77.16770935058594, 833.5051879882812)
+
+                    elseif getgenv().TPPlace == "Bando [NSB]" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-187.90536499023438, 12.781986236572266, 364.0401611328125)
+
                     end
                   end
                 })
-
 
 
     -- ESPTab
@@ -297,14 +379,39 @@ end
 
                 --PurchaseButtons
                 PURCHASETab:AddButton({
-                    Name = "Buy [Liquid Diminium] ",
+                    Name = "Buy [Liquid Diminium]",
                     Callback = function()
                               Diminium()
                       end    
                 })
 
+                PURCHASETab:AddButton({
+                    Name = "Buy [Gummy Mix]",
+                    Callback = function()
+                              Gummy()
+                      end    
+                })
 
 
+                PURCHASETab:AddToggle({
+                    Name = "AutoBuy [Liquid Diminium]",
+                    Default = false,
+                    Callback = function(Value)
+                    _G.AutoBuyDiminium = Value
+                    AutoBuyDiminium()
+                    end
+                })
+
+                PURCHASETab:AddToggle({
+                    Name = "AutoBuy [Gummy Mix]",
+                    Default = false,
+                    Callback = function(Value)
+                    _G.AutoBuyGummy = Value
+                    AutoBuyGummy()
+                    end
+                })
+
+                
     -- WRLDTab
     local WRLDTab = Window:MakeTab({
         Name = "WRLD",
