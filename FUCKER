@@ -287,8 +287,8 @@ end
                     elseif getgenv().TPPlace == "Brickeolia [Dirt Job]" then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(903.3091430664062, 3.8750486373901367, 807.9028930664062)
 
-                    elseif getgenv().TPPlace == "Borley's South [Cooker Job]" then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(253.3358612060547, 4.310620307922363, 111.84494018554688)
+                    elseif getgenv().TPPlace == "Metro" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-633.7554321289062, -73.40528869628906, 953.00439453125)
 
                     elseif getgenv().TPPlace == "Borley's North [Cooker Job]" then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(220.7034454345703, 4.602014541625977, 2395.118896484375)
