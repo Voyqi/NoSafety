@@ -269,7 +269,7 @@ end
 	Name = "Teleports [Risky]",
 	Default = "",
 	Options = {
-        "Lab [Meth Cooking]", "Brickeolia [Dirt Job]", "Borley's North [Cooker Job]", "Borley's South [Cooker Job]", "Bando [SNB]", "Docks [Seed Pickup]", "Shop [1]", "Shop [2]", "JD [Clothing Store]", "Barrods [Clothing Store]", "Barbershop", "Dealership", "Library", "Warehouse", "Growhouse", "ATM [1]", "SewerSafe", "Sewer", "Bando [ABM]","Bando [NSB]"},
+        "Lab [Meth Cooking]", "Brickeolia [Dirt Job]", "Borley's North [Cooker Job]", "Metro", "Bando [SNB]", "Docks [Seed Pickup]", "Shop [1]", "Shop [2]", "JD [Clothing Store]", "Barrods [Clothing Store]", "Barbershop", "Dealership", "Library", "Warehouse", "Growhouse", "ATM [1]", "SewerSafe", "Sewer", "Bando [ABM]","Bando [NSB]"},
 	Callback = function(Value)
         getgenv().TPPlace = Value
 	end    
