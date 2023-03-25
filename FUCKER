@@ -1,4 +1,4 @@
-if game.PlaceId == 9349164965 then
+if game.PlaceId == 12839792719 then
     local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
     local Window = OrionLib:MakeWindow({Name = "[No Safety] !!FUCKER!!", HidePremium = false, SaveConfig = true, ConfigFolder = "", IntroText = "[No Safety] !!FUCKER!!"})
     
